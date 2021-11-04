@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JARVIS</title>
+
+  <!-- CSS only -->
+  <link rel="stylesheet" href="src/map/utils/leaflet-contextmenu.css"/>
+  <link rel="stylesheet" href="src/map/utils/leaflet.css"/>
+
+  <link rel="stylesheet" href="src/utils/bootstrap.css" />
+
+
+  <link rel="stylesheet"  href="./src/styles/test_styles.css" />
+
+
+  <!-- JS, Popper.js, and jQuery -->
+  <script src="src/utils/jquery.min.js"></script>
+  <script src="src/utils/popper.min.js"></script>
+  <script src="src/utils/bootstrap.js"></script>
+	<link rel="stylesheet" href="src/utils/fontawesome.css">
+	<link rel="stylesheet" href="src/utils/jquery-contextmenu.css">
+	<script src="src/utils/jquery-contextmenu.js"></script>
+	<script src="src/utils/jquery.ui.positions.js"></script>
+
+
+<script src="src/utils/milsymbol.js"></script>
+  <script src="src/utils copy/jquery-ui.min.js"></script>
+  <script src="src/utils/simpleTime.js"></script>
+  <script src="src/utils/geomath.js"></script>
+  <script src="src/Utility_Functions/Element.js"></script>
+  <script src="src/Utility_Functions/mergeSort.js"></script>
+  <script src="src/Utility_Functions/Stack.js"></script>
+  <script src="src/Utility_Functions/zip.js"></script>
+  <script src="src/Window_Manager/Alert_Manager.js"></script>
+  <script src="src/Window_Manager/Window_Manager.js"></script>
+
+
+  <script src="src/alerts/Alert.js"></script>
+  <script src="src/alerts/Alert_Manager.js"></script>
+<script src="src/data/objects/bouys.js"></script>
+<script src="src/data/objects/subsurface_track.js"></script>
+<script src="src/data/objects/expandingCircle.js"></script>
+<script src="src/data/objects/manual_bearing.js"></script>
+  <script src="src/data/toms_datastore.js"></script>
+  <script src="src/data/data_bus.js"></script>
+  <script src="src/data/simulation.js"></script>
+  <script src="src/data/stomp.js"></script>
+
+  <script src="src/data/StompSocket.js"></script>
+
+  <script src="src/alerts/asw_alerts.js"></script>
+  <script src="src/sbta/sbta.js"></script>
+  <script src="src/sbta/dynamic_event.js"></script>
+<script src="src/sbta/midshipmanAlgorithm.js"></script>
+
+
+
+
+
+
+  <script src="src/map/utils/leaflet.js"></script>
+  <script src="src/map/utils/leaflet-heat.js"></script>
+  <script src="src/map/utils/leaflet-ellipse.js"></script>
+  <script src="src/map/utils/leaflet-maskgrid.js"></script>
+  <script src="src/map/utils/quadtree.js"></script>
+  <script src="src/map/utils/leaflet-vectorGrid.js"></script>
+  <script src="src/map/utils/L.Modal.js"></script>
+
+  <script src="src/map/world_bathymetry_contours_simplified.js"></script>
+  <script src="src/map/utils/largeWorld.js"></script>
+  <script src="src/map/utils/sample-geojson.js"></script>
+  <script src="src/map/utils/heatPoints.js"></script>
+  <script src="src/map/utils/leaflet-contextmenu.js"></script>
+<link rel="stylesheet" href="src/utils/leaflet.measure.css">
+<script src="src/utils/leaflet.measure.js"></script>
+
+
+
+
+  <style></style>
+</head>
+
+<body>
+  <!-- <div id="classification_bar" class="jarvis-classification-header">
+    <span>UNCLASS</span>
+  </div>
+  <div id="header" class="jarvis-header">
+    <div class="title">
+      <span>JARVIS</span>
+    </div>
+    <div id="tab1">Tab1</div>
+    <div id="tab2">Tab2</div>
+    <div id="tab3">Tab3</div>
+  </div>
+  <aside id="alert_panel" class="jarvis-side-bar">
+    <div id="alert_deposit" class="jarvis-alert-deposit"></div>
+  </aside>
+  <div id="main_container" class="jarvis-container">
+    <div id="map">
+    </div>
+
+  </div> -->
+
+		<!-- Classification border -->
+		<div class="jarvis-classification-bar">
+			<span><strong>(U) </strong> UNCLASS</span>
+		</div>
+		<nav class="navbar navbar-light jarvis-primary-surface">
+			<div class="btn-group">
+				<button class="btn btn-sm jarvis-primary-surface" data-window-reset>
+					<i class="fas fa-undo fa-sm j-app-icon"></i>
+				</button>
+				<button class="btn btn-sm jarvis-primary-surface" data-window-stack>
+					<i class="fas fa-layer-group fa-sm j-app-icon"></i>
+				</button>
+				<button class="btn btn-sm jarvis-primary-surface" data-window-expand_to_fit>
+					<i class="fas fa-expand fa-sm j-app-icon"></i>
+				</button>
+        <!-- testing how to add a "Run simulation button" KPL-->
+        <button class="btn btn-sm jarvis-primary-surface" data-window-run_simulation>
+          <!-- //////////////////////////////////////////////////////////////////// -->
+					<i class=""></i>
+				</button>
+			</div>
+			<div class="btn-group dropleft ml-auto">
+				<button
+					type="button"
+					class="btn jarvis-primary-surface dropdown-toggle"
+					data-toggle="dropdown"
+					aria-haspopup="true"
+					aria-expanded="false"
+				>
+					<i class="fas fa-th fa-lg" style="color: whitesmoke"></i>
+				</button>
+        <!-- This is the right click drop down menus on each of the three windows on the left KPL -->
+				<div
+					class="dropdown-menu jarvis-app-drawer"
+					style="min-width: 400px; min-height: 300px"
+				>
+					<div class="container-fluid px-lg-5">
+						<div
+							class="row align-items-center justify-content-around mt-5 mb-3"
+						>
+							<div class="col-4">
+								<button class="btn jarvis-primary-surface">
+									<i class="fab fa-searchengin fa-3x j-app-icon"></i>
+									<span>SBT</span>
+								</button>
+							</div>
+							<div class="col-4">
+								<button class="btn jarvis-primary-surface">
+									<i class="fab fa-battle-net fa-3x j-app-icon"></i>
+									<span>AAW</span>
+								</button>
+							</div>
+							<div class="col-4">
+								<button class="btn jarvis-primary-surface">
+									<i class="fas fa-bahai fa-3x j-app-icon"></i>
+									<span>ATCK</span>
+								</button>
+							</div>
+						</div>
+						<div class="row align-items-center justify-content-around my-3">
+							<div class="col-4">
+								<button class="btn jarvis-primary-surface">
+									<i class="fab fa-searchengin fa-3x j-app-icon"></i>
+									<span>SBT</span>
+								</button>
+							</div>
+							<div class="col-4">
+								<button class="btn jarvis-primary-surface">
+									<i class="fab fa-battle-net fa-3x j-app-icon"></i>
+									<span>AAW</span>
+								</button>
+							</div>
+							<div class="col-4">
+								<button class="btn jarvis-primary-surface">
+									<i class="fas fa-bahai fa-3x j-app-icon"></i>
+									<span>ATCK</span>
+								</button>
+							</div>
+						</div>
+						<div
+							class="row align-items-center justify-content-around mt-3 mb-5"
+						>
+							<div class="col-4">
+								<button class="btn jarvis-primary-surface">
+									<i class="fab fa-searchengin fa-3x j-app-icon"></i>
+									<span>SBT</span>
+								</button>
+							</div>
+							<div class="col-4">
+								<button class="btn jarvis-primary-surface">
+									<i class="fab fa-battle-net fa-3x j-app-icon"></i>
+									<span>AAW</span>
+								</button>
+							</div>
+							<div class="col-4">
+								<button class="btn jarvis-primary-surface">
+									<i class="fas fa-bahai fa-3x j-app-icon"></i>
+									<span>ATCK</span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!-- This is the JARVIS main screen -->
+			<div class="container" style="max-width:97vw;margin-left:3vw">
+				<div class="row h-100 w-100">
+					<div class="col-lg-4" id="sidePanel">
+						<div class="row">
+							<div id="r1c3" class="well border rounded"></div>
+						</div>
+						<div class="row">
+							<div id="r2c3" class="well border rounded"></div>
+						</div>
+						<div class="row">
+							<div id="r3c3" class="well border rounded"></div>
+						</div>
+            <!-- WORKING HERE TO ADD THE BUTTON -->
+            <button class="btn btn-sm jarvis-primary-surface" data-window-run_simulation>
+              <!-- //////////////////////////////////////////////////////////////////// -->
+    					<i class=""></i>
+    				</button>
+
+            <button class="btn btn-sm jarvis-primary-surface" data-window-expand_to_fit>
+              <i class="fas fa-expand fa-sm j-app-icon"></i>
+            </button>
+
+            <button type="button" attribute-name>Start Button</button>
+					</div>
+					<div class="col-lg-8" style="height:93vh" id="largePanel">
+						<div class="jarvis-main" id="jarvis-main" data-window-container></div>
+						<div id="largePanelCombinedContent"></div>
+						<div class="row" id="largePanelContent">
+							<div class="col-lg-6">
+								<div class="row">
+									<div id="r1c1" class="well border rounded"></div>
+								</div>
+								<div class="row">
+									<div id="r2c1" class="well border rounded"></div>
+								</div>
+								<div class="row">
+									<div id="r3c1" class="well border rounded"></div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="row">
+									<div id="r1c2" class="well border rounded"></div>
+								</div>
+								<div class="row">
+									<div id="r2c2" class="well border rounded"></div>
+								</div>
+								<div class="row">
+									<div id="r3c2" class="well border rounded"></div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+
+
+
+		</div>
+
+
+
+
+		<div
+			class="jarvis-primary-surface jarvis-alert-bar"
+		>
+			<div class="btn-group dropup" style="min-width: 25%;">
+				<button
+					type="button"
+					class="btn btn-outline-secondary dropdown-toggle"
+					data-toggle="dropdown"
+					aria-haspopup="true"
+					aria-expanded="false"
+					style="min-width: 25%;"
+				>
+					<span data-alert_box = 'warning'>All Good</span>
+					<span class="jarvis-badge" id="warnings" data-alert-badge></span>
+				</button>
+				<div class="dropdown-menu jarvis-alert-drawer" data-warning-drawer>
+				</div>
+			</div>
+			<div class="btn-group dropup" style="min-width: 25%;">
+				<button
+					type="button"
+					class="btn btn-outline-secondary dropdown-toggle"
+					data-toggle="dropdown"
+					aria-haspopup="true"
+					aria-expanded="false"
+					style="min-width: 25%;"
+				>
+				<span data-alert_box = 'caution'>All Good</span>
+					<span class="jarvis-badge" id="cautions" data-alert-badge></span>
+				</button>
+				<div class="dropdown-menu jarvis-alert-drawer" data-cautions-drawer>
+					<!-- Dropdown menu links -->
+				</div>
+			</div>
+			<div class="btn-group dropup" style="min-width: 25%;">
+				<button
+					type="button"
+					class="btn btn-outline-secondary dropdown-toggle"
+					data-toggle="dropdown"
+					aria-haspopup="true"
+					aria-expanded="false"
+					style="min-width: 25%;"
+				>
+				<span data-alert_box = 'alert'>All Good</span>
+					<span class="jarvis-badge" id="alerts" data-alert-badge></span>
+				</button>
+				<div class="dropdown-menu jarvis-alert-drawer" data-alert-drawer>
+					<!-- Dropdown menu links -->
+				</div>
+			</div>
+		</nav>
+
+</body>
+
+
+
+<script src="src/map/drawingUtils.js"></script>
+<script src="src/map/baseMapDrawing.js"></script>
+<script src="src/map/drawHeatmaps.js"></script>
+
+<script src="src/map/map_control.js"></script>
+
+<script src="src/controllers/boxDisplays.js"></script>
+<script src="index.js"></script>
+</html>
