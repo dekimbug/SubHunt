@@ -1,0 +1,331 @@
+:root {
+	--primary: var(--primary-500);
+	--primary-variation: var(--primary-variation-700);
+	--danger: var(--danger-600);
+	--warning: var(--warning-600);
+	--caution: var(--warning-300);
+	--accent: var(--accent-700);
+	--accent-variation: var(--accent-variation-300);
+
+	--primary-900: #00391e;
+	--primary-800: #005f36;
+	--primary-700: #007c50;
+	--primary-600: #019c68;
+	--primary-500: #1eb980;
+	--primary-400: #01e5a8;
+	--primary-300: #38efba;
+	--primary-200: #5df7d3;
+	--primary-100: #5df7d3;
+	--primary-50: #b7fff2;
+
+	--primary-variation-900: #00312a;
+	--primary-variation-800: #004940;
+	--primary-variation-700: #045d56;
+	--primary-variation-600: #00837b;
+	--primary-variation-500: #01aea4;
+	--primary-variation-400: #16d2c7;
+	--primary-variation-300: #55d1cb;
+	--primary-variation-200: #8bd8da;
+	--primary-variation-100: #b7e1e1;
+	--primary-variation-50: #deeeee;
+
+	--danger-900: #620002;
+	--danger-800: #8c0000;
+	--danger-700: #b50001;
+	--danger-600: #df0000;
+	--danger-500: #ff0600;
+	--danger-400: #fe3522;
+	--danger-300: #ff6759;
+	--danger-200: #ff857c;
+	--danger-100: #ffb3a6;
+	--danger-50: #ffb3a6;
+
+	--warning-900: #e83400;
+	--warning-800: #f75500;
+	--warning-700: #ff6f01;
+	--warning-600: #ff8500;
+	--warning-500: #ffac11;
+	--warning-400: #ffbc2b;
+	--warning-300: #ffcf44;
+	--warning-200: #ffdc78;
+	--warning-100: #ffdc78;
+	--warning-50: #fff8e5;
+
+	--accent-900: #005ccc;
+	--accent-800: #0077e5;
+	--accent-700: #0081fb;
+	--accent-600: #019aff;
+	--accent-500: #24b4ff;
+	--accent-400: #42c6ff;
+	--accent-300: #5cceff;
+	--accent-200: #72dfff;
+	--accent-100: #72dfff;
+	--accent-50: #eafdff;
+
+	--accent-variation-900: #450052;
+	--accent-variation-800: #62017b;
+	--accent-variation-700: #7f019f;
+	--accent-variation-600: #9200c8;
+	--accent-variation-500: #a000f2;
+	--accent-variation-400: #a501ff;
+	--accent-variation-300: #a501ff;
+	--accent-variation-200: #b15dff;
+	--accent-variation-100: #cb9af8;
+	--accent-variation-50: #cb9af8;
+
+	--warning: #ff6859;
+	--caution: #ffcf44;
+	--accent: #72deff;
+	--accent-variation: #b15dff;
+
+	--primary-bg: #33333d;
+	--primary-surface: #373740;
+
+	--primary-icon: #a3a3a3;
+}
+
+body {
+	background: var(--primary-bg);
+	color: var(--accent-50);
+	font-family: HelveticaNeue, "Helvetica Neue", "Lucida Grande", Arial,
+		sans-serif;
+	margin: 0;
+	padding: 0;
+	border: 5px solid var(--primary-500);
+	height: 100vh;
+	overflow: hidden;
+}
+
+a {
+	text-decoration: none !important;
+}
+
+.jarvis-primary-surface {
+	background-color: var(--primary-surface);
+}
+.jarvis-classification-bar {
+	background-color: var(--primary);
+	text-align: center;
+	font-size: 12px;
+}
+
+.jarvis-primary {
+	color: var(--primary-400);
+}
+
+.jarvis-warning {
+	color: var(--warning-900);
+}
+
+.jarvis-caution {
+	color: var(--caution);
+}
+
+.jarvis-alert {
+	color: var(--accent);
+}
+
+.jarvis-bw {
+	border-color: var(--warning-900) !important;
+}
+
+.jarvis-bp {
+	border-color: var(--primary-500) !important;
+}
+.jarvis-bc {
+	border-color: var(--caution) !important;
+}
+
+.jarvis-ba {
+	border-color: var(--accent);
+}
+.jarvis-main {
+	padding-bottom: 10px;
+	color: var(--primary-surface);
+	height: calc(100% - 100px);
+	width: 100%;
+
+	align-content: start;
+	justify-content: start;
+}
+
+.jarvis-window {
+	background: #fff;
+	width: 300px;
+	height: 300px;
+	margin: 4px;
+
+	border: 1px solid #acacac;
+	border-radius: 6px;
+	box-shadow: 0px 0px 10px #acacac;
+	z-index: 1040;
+}
+
+.jarvis-window :focus {
+	border: 1px solid red;
+}
+
+.jarvis-window-header-bar {
+	background: linear-gradient(top, #ebebeb, #d5d5d5);
+	color: #4d494d;
+	font-size: 11pt;
+	line-height: 20px;
+	text-align: center;
+	width: 100%;
+	height: 20px;
+	border-top: 1px solid #f3f1f3;
+	border-bottom: 1px solid #b1aeb1;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	user-select: none;
+	cursor: default;
+}
+
+.jarvis-window-controls {
+	padding-left: 8px;
+	padding-top: 3px;
+	float: left;
+	line-height: 0px;
+}
+
+.jarvis-window-controls > div {
+	font-size: 9pt;
+	line-height: 11px !important;
+	margin-left: 4px;
+	width: 13px;
+	height: 13px;
+	border-radius: 50%;
+	display: inline-block;
+}
+
+.jarvis-window-controls > div > a > * {
+	pointer-events: none !important;
+}
+
+.jarvis-window-controls:hover a {
+	visibility: visible;
+}
+
+.well {
+        width: 100%;
+        height: 100%;
+        min-height: 27vh;
+
+        margin: 3px
+	}
+
+.close {
+	background: #ff5c5c;
+	border: 1px solid #e33e41;
+}
+
+.close:active {
+	background: #c14645;
+	border: 1px solid #b03537;
+}
+
+.close:active .closebutton {
+	color: #4e0002;
+}
+
+.closebutton {
+	color: #820005;
+	visibility: hidden;
+	cursor: default;
+}
+
+.minimize {
+	background: #ffbd4c;
+	border: 1px solid #e09e3e;
+}
+
+.minimize:active {
+	background: #c08e38;
+	border: 1px solid #af7c33;
+}
+
+.minimize:active .minimizebutton {
+	color: #5a2607;
+}
+
+.minimizebutton {
+	color: #9a5518;
+	visibility: hidden;
+	cursor: default;
+}
+
+.zoom {
+	background: #00ca56;
+	border: 1px solid #14ae46;
+}
+
+.zoom:active {
+	background: #029740;
+	border: 1px solid #128435;
+}
+
+.zoom:active .zoombutton {
+	color: #003107;
+}
+
+.zoombutton {
+	color: #006519;
+	visibility: hidden;
+	cursor: default;
+}
+
+.jarvis-window-content {
+	padding: 3px;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+}
+
+.jarvis-alert-bar {
+	position: fixed;
+	bottom: 8px;
+	width: calc(100% - 10px);
+	display: flex;
+	align-content: center;
+	justify-content: space-around;
+}
+
+.jarvis-alert-bar > div {
+	margin: 5px;
+}
+.jarvis-alert-drawer {
+	width: 100%;
+	max-height: 33vh;
+	overflow-y: scroll;
+	z-index: 2000;
+}
+.jarvis-app-drawer {
+	padding: 10px;
+	border: 2px solid var(--primary-bg);
+	background-color: var(--primary-surface);
+	box-shadow: -4px 3px 13px 1px #000000;
+}
+
+.j-app-icon {
+	color: var(--primary-icon);
+}
+
+.j-app-icon + span {
+	color: var(--primary-icon);
+}
+
+.jarvis-badge {
+	position: absolute;
+	top: -13px;
+	right: -12px;
+	background-color: #de404f;
+	border: 1px solid #d22e3e;
+	border-radius: 50%;
+	height: 20px;
+	width: 20px;
+	text-align: center;
+	font-size: 12px;
+
+	color: #ffffff;
+	text-emphasis: bold;
+}
