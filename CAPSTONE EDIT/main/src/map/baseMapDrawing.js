@@ -24,16 +24,21 @@ var map = L.map('jarvis-main', {
     ////////////////////////////////////
     //add individual Sonobuoy functionality
     ////////////////////////////////////
-    // {
-    //     text: 'Add Sonobuoy Here',
-    //     callback: addSonobuoy
-    // },
+    {
+         text: 'Add Sonobuoy Here',
+         callback: addSonobuoy
+     },
     ]
 }).setView([43, 0], 2);
 map.setMaxBounds([[-90, -720], [90, 720]])
 map.options.maxZoom = 20;
 function centerMap(e) {
     map.panTo(e.latlng);
+}
+
+
+function addSonobuoy(e){
+   simulation.generate_difar(e.latlng.lat, e.latlng.lng, 5);
 }
 
 
@@ -113,6 +118,6 @@ L.Control.textbox = L.Control.extend({
 });
 L.control.textbox = function (opts) { return new L.Control.textbox(opts); }
 L.control.textbox({ position: 'bottomright' }).addTo(map);
-
+L.control.scale({metric: true}).addTo(map);
 
 $('#map').css('cursor', 'default');

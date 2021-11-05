@@ -7,6 +7,45 @@ class Simulation{
         this.actual_sub = null;
         this.error = 10;//1 standard deviation bearing error (+/- degrees)
     }
+    
+    
+    midrun(){
+      this.generate_subsurface_track(24, 119, 45, 60);
+      this.generate_difar(24.01, 118.99, 1);
+      this.generate_difar(23.99, 118.99, 2);
+      this.generate_difar(24.01, 119.01, 3);
+      this.generate_difar(23.99, 119.01, 4);
+      
+      let f_zero = 100;
+
+        //shoot bearings every 20 seconds
+        for(let buoy_id in datastore.buoys){
+          this.generate_manual_bearing(buoy_id,datastore.primary_subsurface_track_id,f_zero)
+        }
+
+        var expandCircles = false
+        this.interval = setInterval(function(){
+          for(let buoy_id in datastore.buoys){
+            simulation.generate_manual_bearing(buoy_id,datastore.primary_subsurface_track_id,f_zero)
+          }
+
+          //start expanding circle. this is not for the project
+          /*if (asw_alerts.lost_contact_alert_id != "" && !expandCircles){
+            var pos = simulation.actual_sub.get_current_position()
+            //(expansionSpeed,updateTime,timeLate,radius,lat,lng)
+            simulation.generate_expanding_circle(30, new Date(), 0, .3, pos[0], pos[1])
+            expandCircles = true
+          }*/
+        },20000)
+        
+
+        setTimeout(function(){
+          let time = new Date();
+          //simulation.actual_sub.update_course_and_speed(time,180,10)
+          console.log("TURN TURN TURN")
+        },60000)//180000
+
+    }
 
     //this has a fast target with a few close buoys
     run(){

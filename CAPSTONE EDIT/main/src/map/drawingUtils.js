@@ -41,6 +41,4 @@ var drawingUtils = {
             map.contextmenu.insertItem({text:"Hide Bathmetry",callback:drawingUtils.toggleBathy},5)
         }
     },
-
-
 }
